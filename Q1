@@ -1,0 +1,30 @@
+import numpy as np
+import pandas as pd 
+import matplotlib.pyplot as plt
+import seaborn as sns
+d1 = pd.read_csv("D:/Games/archive/loan_sanction_train.csv")
+d2 = pd.read_csv("D:/Games/archive_4/vgsales.csv")
+d1
+d2
+from scipy.stats import lognorm
+np.random.seed(1)
+plt.hist(d1)
+from sklearn import preprocessing
+label_encoder = preprocessing.LabelEncoder()
+d1['Married']= label_encoder.fit_transform(d1['Married'])
+d1['Education']= label_encoder.fit_transform(d1['Education'])
+d1['Self_Employed']= label_encoder.fit_transform(d1['Self_Employed'])
+d1['Property_Area']= label_encoder.fit_transform(d1['Property_Area'])
+d1['Gender']= label_encoder.fit_transform(d1['Gender'])
+d1['Loan_Status']= label_encoder.fit_transform(d1['Loan_Status'])
+d1
+d1.isnull().sum()
+d1 = d1.dropna()
+d1
+d2 = d2.drop(["Name","Platform"],axis = 1)
+d2
+d2['Genre']= label_encoder.fit_transform(d2['Genre'])
+d2['Publisher']= label_encoder.fit_transform(d2['Publisher'])
+d2
+plt.hist(d2)
+# D1 and D2 have identical Stastical Distribution. Hence, They correspond in determining the same variable.
