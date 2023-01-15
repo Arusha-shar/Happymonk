@@ -1,0 +1,50 @@
+#Data Augmentation
+from keras.preprocessing.image import ImageDataGenerator
+
+#Flipping
+datagen = ImageDataGenerator(
+    rotation_range=20,
+    width_shift_range=0.2,
+    height_shift_range=0.2,
+    horizontal_flip=True)
+
+#Rotation
+datagen = ImageDataGenerator(
+    rotation_range=20)
+
+#Transformation
+datagen = ImageDataGenerator(
+    width_shift_range=0.2,
+    height_shift_range=0.2)
+
+#Object Classification Algorithms
+#1.Random Forest
+from sklearn.ensemble import RandomForestClassifier
+
+#2.Support Vector Machine
+from sklearn import svm
+
+#Performance of Algorithms
+#Augmented Dataset
+#Random Forest
+rf_augmented = RandomForestClassifier(n_estimators=100)
+rf_augmented.fit(X_augmented, y_augmented)
+
+#Support Vector Machine
+svc_augmented = svm.SVC()
+svc_augmented.fit(X_augmented, y_augmented)
+
+#Original Dataset
+#Random Forest
+rf_original = RandomForestClassifier(n_estimators=100)
+rf_original.fit(X_original, y_original)
+
+#Support Vector Machine
+svc_original = svm.SVC()
+svc_original.fit(X_original, y_original)
+
+#Comparison Chart
+Algorithm | Augmented Dataset | Original Dataset
+--------- | ----------------- | ---------------
+Random Forest | rf_augmented | rf_original
+Support Vector Machine | svc_augmented | svc_original
